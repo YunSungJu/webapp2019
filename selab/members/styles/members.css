@@ -5,8 +5,11 @@
 	border-radius: 3px;
 }
 
-#main h2{
+#title{
 	font-size: 20px;
+}
+
+#main h2{
     font-weight: bold;
     width: 100%;
     padding-left: 10px;
@@ -15,7 +18,7 @@
     color: black;
     line-height: 52px;
     height: 52px;
-		color: #404040;
+	color: #404040;
 }
 
 .human img{
@@ -28,7 +31,7 @@
 }
 
 #main ul{
-	list-style-image: url("../images/list-img.png");
+	list-style : square;
 	float: left;
 }
 
@@ -39,7 +42,7 @@
 
 .human{
 	margin: 10px;
-	overflow: hidden;
+	overflow: auto;
 }
 
 .photo{
@@ -50,7 +53,6 @@
 .name{
 	margin-top: 5px !important;
 	font-weight: bold;
-	font-size: 20px;
 }
 
 #edit{

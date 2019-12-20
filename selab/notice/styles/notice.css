@@ -29,34 +29,38 @@
 	width: 70%;
 	border-right: 1px solid #dfdfdf;
 	text-align: center;
+	overflow:hidden;
 }
 
 .contents li.name{
 	width: 15%;
 	border-right: 1px solid #dfdfdf;
 	text-align: center;
+	overflow:hidden;
 }
 
 .contents li.time{
 	width: 15%;
 	text-align: center;
+	overflow:hidden;
 }
 
 .contents .header li {
-	background-color: #8bcbe3;
+	background-color: #C4C4C4;
 	height: 43px;
-	font-size: 20px;
 	line-height: 40px;
 	color: white;
+	/*font-size: 20px;*/
 	border-bottom: 3px solid #dfdfdf;
 }
 
 .contents .entry li {
 	background-color: white;
+	height: 40px;
 }
 
 .contents .entry:nth-child(odd) li {
-	background-color: #edf7fa;
+	background-color: #f5f5f5;
 }
 
 .important{
@@ -74,6 +78,7 @@
 	height: 40px;
 	line-height: 40px;
 	cursor: pointer;
+	clear: both;
 }
 
 .contents .entry .content {
@@ -150,7 +155,6 @@
 	width: 690px;
 	height: 350px;
 	margin-left:-345px;
-
 	color:#4796bd;
 	border-radius: 5px;
 	border: 2px solid #4796bd;

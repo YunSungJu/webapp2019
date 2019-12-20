@@ -1,35 +1,30 @@
 #slides, #problems {
-  font-size: 15px;
-  margin: 0 auto;
-  display: none;
+	margin: 0 auto;
 }
 
-#slides a, #problems a {
-    color: rgb(0, 113, 216);
-    font-size: 15px;
-
+#main{
+	font-size: 15px;
 }
 
 #slides a:hover, #problems a:hover {
-    color: rgb(255, 103, 103);
+	color: rgb(255, 103, 103);
 }
 
 
 h1 {
 	font-size: 60px;
-	color: #00abd9;
 	margin: 20px 0 5px 0;
 }
 
 #lecture, #lab {
-  width: 50%;
+	width: 50%;
 	display: inline-block;
 	vertical-align: top;
-  float: left;
+	float: left;
 }
 
 #slides th, #problems th {
-	background-color: #8bcbe3;
+	background-color: #C4C4C4;
 	height: 52px;
 	font-size: 20px;
 	color: white;
@@ -51,7 +46,7 @@ tr>th:first-child, tr>td:first-child {
 }
 
 #slides table {
-      width: 100%;
+	width: 100%;
 }
 
 #slides th.title, #slides td.title {
@@ -64,14 +59,13 @@ tr>th:first-child, tr>td:first-child {
 
 #slides tr td, #problems tr td {
 	background-color: white;
-	font-size: 18px;
 	height: 30px;
 	vertical-align: middle;
 	cursor: pointer;
 }
 
 #slides tr:nth-child(odd) td, #problems tr:nth-child(odd) td {
-	background-color: #edf7fa;
+	background-color: #f5f5f5;
 }
 
 /*
@@ -95,5 +89,5 @@ tr>th:first-child, tr>td:first-child {
 }
 
 #problems table {
-    width: 100%;
+	width: 100%;
 }

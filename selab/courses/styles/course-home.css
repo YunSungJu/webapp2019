@@ -2,10 +2,6 @@
     margin: 0 auto;
 }
 
-#main a{
-    color: rgb(0, 113, 216);
-}
-
 #main a:hover{
     color: rgb(255, 103, 103);
 }
@@ -13,7 +9,6 @@
 
 #main .wrap-subcontent{
     background-color: white;
-
     overflow: hidden;
     margin-bottom: 30px;
 }
@@ -24,12 +19,9 @@ h1{
 
 #main h2, #main h3, #main h4, #main p, #main li{
     margin-bottom: 12px;
-    font-size: 15px;
-    font-family: Tahoma, Arial, sans-serif;
-
 }
 
-#main p{
+.contents p{
     padding-left: 15px;
 }
 
@@ -41,12 +33,12 @@ font-size: 30px;
 }
 
 #main h3, #main h4 {
-    font-size: 20px;
+/*    font-size: 20px;*/
     font-weight: 100;
     width: 100%;
     padding-left: 10px;
 
-    background-color:rgb(211, 237, 245);
+    background-color: #f5f5f5;
     color: black;
     line-height: 52px;
     height: 52px;
@@ -65,19 +57,21 @@ font-size: 30px;
 }
 
 #main .last{
-    margin-bottom: 100px;
+    margin-bottom: 30px;
 }
 
 #main ul{
-    list-style-image: url("../images/list-img.png");
+    list-style : square;
 }
 
+#tab {
+  font-size: 20px;
+}
 #tab div {
   height: 48px;
   line-height: 48px; /* height(#class a) */ /* for vertical align */
   text-align: center;
-  background-color: #70c8e9;
-  font-size: 20px;
+  background-color: #C4C4C4;
   font-weight: 300;
   color: white;
   display: inline-block;
@@ -85,6 +79,13 @@ font-size: 30px;
   margin: 0px 2px;
   float: left;
   cursor: pointer;
+}
+
+#tab div.deactive a {
+  line-height: 48px;
+  color: white;
+  font-weight: 300;
+  display: block;
 }
 
 .first-tab{
@@ -109,7 +110,7 @@ font-size: 30px;
 #hl{
     height: 5px;
   padding: 0px;
-    background-color: #70c8e9;
+    background-color: #C4C4C4;
   clear: both;
 }
 
