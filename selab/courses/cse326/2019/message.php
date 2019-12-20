@@ -23,6 +23,13 @@
 <body>
 	<?php
 	session_start();
+	if (isset($_SESSION['nav']) && isset($_SESSION['font']) && isset($_SESSION['fontsize']) && isset($_SESSION['bg'])) {
+		$nav = $_SESSION['nav'];
+		$font = $_SESSION['font'];
+		$fontsize = $_SESSION['fontsize'];
+		$background = $_SESSION['bg'];
+		$all = true;
+	}
 	?>
 	<header role="banner" class="header">
 		<div class="container">
@@ -79,46 +86,50 @@
 		</div>
 
 		<div id="option">
-			<div id="font">
-				<p>Navigation</p>
-				<input type="radio" name="nav" value="top" checked="checked" /> Top
-				<input type="radio" name="nav" value="left" /> Left
-				<input type="radio" name="nav" value="right" /> Right
-				<p>Font</p>
-				<select id="fontselect" name="selectFontFamily" onchange="fontupdate('fontstyle')">
-					<option style="font-family:Serif" value="serif"> Serif </option>
-					<option style="font-family:Tahoma" value="Tahoma"> Tahoma </option>
-					<option style="font-family:Arial" value="Arial"> Arial </option>
-					<option style="font-family:Monospace" value="Monospace">Monospace</option>
-					<option style="font-family:Roboto" value="Roboto">Roboto</option>
-					<option style="font-family:Times New Roman" value="Times New Roman">Times New Roman</option>
-					<option style="font-family:Garamond" value="Garamond">Garamond</option>
-					<option style="font-family:Comic Sans MS" value="Comic Sans MS">Comic Sans MS</option>
-					<option style="font-family:Courier" value="Courier">Courier</option>
-					<option style="font-family:Impact" value="Impact">Impact</option>
-				</select>
-				<p>Font Size</p>
-				<select id="fontsizeSlect" name="selectfontsize" onchange="fontupdate('sizeTC')">
-					<option style="font-size: 15px">Small</option>
-					<option style="font-size: 20px" selected>Normal</option>
-					<option style="font-size: 25px">Medium</option>
-					<option style="font-size: 30px">Large</option>
-					<option style="font-size: 35px">Huge</option>
-				</select>
-			</div>
-			<div id="background">
-				<p>Background</p>
-				<select id="backselect" name="selectBackground" onchange="backupdate();">
-					<option value="1"> Theme1 </option>
-					<option value="2"> Theme2</option>
-					<option value="3"> Theme3 </option>
-					<option value="4"> Theme4 </option>
-					<option value="5"> Theme5 </option>
-				</select>
-			</div>
+			<form action="../../../savemenu.php" method="POST">
+				<div id="font">
+					<p>Navigation</p>
+					<input type="radio" name="nav" value="top" checked="checked" /> Top
+					<input type="radio" name="nav" value="left" /> Left
+					<input type="radio" name="nav" value="right" /> Right
+					<p>Font</p>
+					<select id="fontselect" name="selectFontFamily" onchange="fontupdate('fontstyle')">
+						<option style="font-family:Serif" value="serif"> Serif </option>
+						<option style="font-family:Tahoma" value="Tahoma"> Tahoma </option>
+						<option style="font-family:Arial" value="Arial"> Arial </option>
+						<option style="font-family:Monospace" value="Monospace">Monospace</option>
+						<option style="font-family:Roboto" value="Roboto">Roboto</option>
+						<option style="font-family:Times New Roman" value="Times New Roman">Times New Roman</option>
+						<option style="font-family:Garamond" value="Garamond">Garamond</option>
+						<option style="font-family:Comic Sans MS" value="Comic Sans MS">Comic Sans MS</option>
+						<option style="font-family:Courier" value="Courier">Courier</option>
+						<option style="font-family:Impact" value="Impact">Impact</option>
+					</select>
+					<p>Font Size</p>
+					<select id="fontsizeSlect" name="selectfontsize" onchange="fontupdate('sizeTC')">
+						<option style="font-size: 15px">Small</option>
+						<option style="font-size: 20px" selected>Normal</option>
+						<option style="font-size: 25px">Medium</option>
+						<option style="font-size: 30px">Large</option>
+						<option style="font-size: 35px">Huge</option>
+					</select>
+				</div>
+				<div id="background">
+					<p>Background</p>
+					<select id="backselect" name="selectBackground" onchange="backupdate();">
+						<option value="1"> Theme1 </option>
+						<option value="2"> Theme2</option>
+						<option value="3"> Theme3 </option>
+						<option value="4"> Theme4 </option>
+						<option value="5"> Theme5 </option>
+					</select>
+				</div>
+				<input id="submit" type="submit" value="save" onclick="savemenu();">
+	    </form>
 		</div>
 	</div>
 
+	<?php if ($all == true) {echo "<script> changeForm('$nav','$font','$fontsize','$background'); </script>"; } ?>
 	<main role="main">
 		<div id="sideNav">
 			<div class="nav-list-left">
@@ -130,12 +141,12 @@
 				<a id="sideContact" href="../../../contact/index.html"> <img src="../../../common/images/phone-24px.svg" alt="contact"> </a>
 			</div>
 			<div class="nav-list-right">
-				<a href="../notice/index.html" >NOTICE</a>
-				<a href="../members/index.html" >MEMBERS</a>
-				<a href="../research/index.html" >RESEARCH</a>
-				<a href="../publications/index.html" >PUBLICATIONS</a>
-				<a href="../courses/index.html" class="selected" >COURSES</a>
-				<a href="../gallery/index.html" >GALLERY</a>
+				<a href="../../../notice/index.html" >NOTICE</a>
+				<a href="../../../members/index.html" >MEMBERS</a>
+				<a href="../../../research/index.html" >RESEARCH</a>
+				<a href="../../../publications/index.html" >PUBLICATIONS</a>
+				<a href="../../../courses/index.html" class="selected" >COURSES</a>
+				<a href="../../../gallery/index.html" >GALLERY</a>
 			</div>
 		</div>
 
@@ -150,7 +161,7 @@
 				<div id="hl"></div>
 				<div id="team">
 					<div class="teamMenu">
-            			<a href="team.html"><img src="../../images/reply-24px.svg" alt="back to team page"></a>
+            <a href="team.html"><img src="../../images/reply-24px.svg" alt="back to team page"></a>
 						<img class="this-page pull-right" src="../../images/mail-24px.svg" alt="message">
 						<a class="pull-right" href="myteam.php"> <img src="../../images/supervised_user_circle-24px.svg" alt="myTeam"> </a>
 						<a class="pull-right" href="mypage.html"> <img src="../../images/account_circle-24px.svg" alt="myPage"> </a>
@@ -160,12 +171,12 @@
 					<?php
 
 					try {
-						$db = new PDO("mysql:dbname=team; host=54.180.112.225; port=3306", "root", "11111111");
+						$db = new PDO("mysql:dbname=team; host=13.124.181.241; port=3306", "root", "11111111");
 						$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 						$db->query("set session character_set_connection=utf8;");
 						$db->query("set session character_set_results=utf8;");
 						$db->query("set session character_set_client=utf8;");
-						//php 변수 쓸려면
+								//php 변수 쓸려면
 						$id = $_SESSION['ID'];
 						$id = $db->quote($id);
 						$check = "SELECT * FROM message WHERE receiver = $id";
@@ -173,85 +184,89 @@
 						$results = $rows->fetchAll();
 					?>
 						<p class="mestitle">받은 메세지</p>
-						<ul id="mes_get">
-							<li class="subject">
-								<ul>
-									<li class="person pull-left">보낸 팀</li>
-									<li class="time pull-left">보낸 시간</li>
-									<li class="but pull-left">수락</li>
-								</ul>
-							</li>
-					<?php
-							foreach($results as $result) {
-								$num = $result["sender"];
-					?>
+							<ul id="mes_get">
+								<li class="subject">
+									<ul>
+										<li class="person pull-left">보낸 팀</li>
+										<li class="time pull-left">보낸 시간</li>
+										<li class="but pull-left">수락</li>
+									</ul>
+								</li>
+								<?php
+								foreach($results as $result) {
+									$num = $result["sender"];
+									$num = $db->quote($num);
+									$check = "SELECT * FROM member WHERE studentNum = $num";
+									$rows = $db->query($check);
+									$name = $rows->fetchAll();
+								?>
 								<li class="mes">
 									<ul>
-										<li class="person pull-left"><?=$num?></li>
+										<li class="person pull-left"><?= $num ?></li>
 										<li class="time pull-left"><?=$result["sendDay"]?></li>
 										<li class="but pull-left">
 											<form action="php/receive.php" method="POST">
-												<input type="text" name="mynum" value="<?=$_SESSION["ID"]?>" style="display: none;">
-												<input type="text" name="sender" value="<?=$result["sender"]?>" style="display: none;">
-												<input type="text" name="day" value="<?=$result["sendDay"]?>" style="display: none;">
-												<input type="submit" value="받기">
-											</form>
+                        <input type="text" name="mynum" value="<?=$_SESSION["ID"]?>" style="display: none;">
+                        <input type="text" name="sender" value="<?=$result["sender"]?>" style="display: none;">
+                        <input type="text" name="day" value="<?=$result["sendDay"]?>" style="display: none;">
+                        <input type="submit" value="받기">
+                      </form>
 										</li>
 									</ul>
 								</li>
-					<?php
-							}
-					?>
-						</ul>
-						<span></span>
-					<?php
-						$check = "SELECT * FROM member WHERE studentNum = $id";
-						$rows = $db->query($check);
-						$results = $rows->fetchAll();
-						$teamname = $results[0]["teamname"];
-						$q_teamname = $db->quote($teamname);
-
-						$check = "SELECT * FROM message WHERE sender = $q_teamname";
-						$rows = $db->query($check);
-						$results = $rows->fetchAll();
-					?>
-						<p class="mestitle">보낸 메세지</p>
-						<ul id="mes_send">
-							<li class="subject">
-								<ul>
-									<li class="person pull-left">받는 사람</li>
-									<li class="time pull-left">보낸 시간</li>
-									<li class="but pull-left">취소</li>
-								</ul>
-							</li>
-					<?php
-						foreach($results as $result) {
-							$num = $result["receiver"];
-							$num = $db->quote($num);
-							$check = "SELECT * FROM member WHERE studentNum = $num";
-							$rows = $db->query($check);
-							$name = $rows->fetchAll();
-					?>
-						<li class="mes">
-							<ul>
-								<li class="person pull-left"><?=$name[0]["name"]?></li>
-								<li class="time pull-left"><?=$result["sendDay"]?></li>
-								<li class="but pull-left">
-									<form action="php/cancel.php" method="POST">
-										<input type="text" name="mynum" value="<?=$_SESSION["ID"]?>" style="display: none;">
-										<input type="text" name="receiver" value="<?=$result["receiver"]?>" style="display: none;">
-										<input type="text" name="day" value="<?=$result["sendDay"]?>" style="display: none;">
-										<input type="submit" value="취소">
-									</form>
-								</li>
+								<?php
+								}
+								?>
 							</ul>
-						</li>
-					<?php
-						}
-					?>
-						</ul>
-						<span></span>
-					<?php
+							<span></span>
+							<?php
+							$check = "SELECT * FROM member WHERE studentNum = $id";
+							$rows = $db->query($check);
+							$results = $rows->fetchAll();
+							$teamname = $results[0]["teamname"];
+							$q_teamname = $db->quote($teamname);
+
+							$check = "SELECT * FROM message WHERE sender = $q_teamname";
+							$rows = $db->query($check);
+							$results = $rows->fetchAll();
+							?>
+							<p class="mestitle">보낸 메세지</p>
+							<ul id="mes_send">
+								<li class="subject">
+									<ul>
+										<li class="person pull-left">받는 사람</li>
+										<li class="time pull-left">보낸 시간</li>
+										<li class="but pull-left">취소</li>
+									</ul>
+								</li>
+							<?php
+								foreach($results as $result) {
+									$num = $result["receiver"];
+									$num = $db->quote($num);
+									$check = "SELECT * FROM member WHERE studentNum = $num";
+									$rows = $db->query($check);
+									$name = $rows->fetchAll();
+							?>
+								<li class="mes">
+									<ul>
+										<li class="person pull-left"><?=$name[0]["name"]?></li>
+										<li class="time pull-left"><?=$result["sendDay"]?></li>
+										<li class="but pull-left">
+											<form action="php/cancel.php" method="POST">
+                        <input type="text" name="mynum" value="<?=$_SESSION["ID"]?>" style="display: none;">
+                        <input type="text" name="receiver" value="<?=$result["receiver"]?>" style="display: none;">
+                        <input type="text" name="day" value="<?=$result["sendDay"]?>" style="display: none;">
+                        <input type="submit" value="취소">
+                      </form>
+										</li>
+									</ul>
+								</li>
+								<?php
+								}
+								?>
+							</ul>
+							<span></span>
+						<?php
 					} catch (PDOException $ex) {
 						?>
 						<p>Sorry, a database error occurred. Please try again later.</p>

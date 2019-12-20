@@ -1,7 +1,7 @@
 <?php
 
     function initailizecustom($num, $password) {
-        $custom_db = new PDO("mysql:host=54.180.112.225;dbname=custom;port=3306", "root", "11111111");
+        $custom_db = new PDO("mysql:host=13.124.181.241;dbname=custom;port=3306", "root", "11111111");
         $custom_db->exec("set names utf8");
 
         $custom_db->exec("insert into main_page values ('$num',NULL,NULL,NULL,NULL)");

@@ -1,5 +1,5 @@
 <?php
-    $dbHost = "54.180.112.225";
+    $dbHost = "13.124.181.241";
     $dbName = "team";
     $dbUser = "root";
     $dbPass = "11111111";

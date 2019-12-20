@@ -1,9 +1,5 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
-<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 <head>
 	<meta charset="utf-8" />
 	<title>Software Engineering Lab - Courses: Web Application Development</title>
@@ -14,11 +10,11 @@ session_start();
 	<link rel="stylesheet" href="../../styles/course-home.css" type="text/css" />
 	<link rel="stylesheet" href="../../styles/card.css" type="text/css" />
 	<link rel="stylesheet" id = "backcss" href="../../../common/styles/theme1.css" type="text/css" />
+
 	<script type="text/javascript" src="../../../common/scripts/jquery-1.11.0.min.js"></script>
 	<script type="text/javascript" src="../../../common/scripts/jquery-ui.js"></script>
 	<script type="text/javascript" src="../../../common/scripts/buffered-keyup.js"></script>
 	<script type="text/javascript" src="../../../common/scripts/common.js"></script>
-	<!-- <script type="text/javascript" src="../../scripts/course-page.js"></script> -->
 	<script type="text/javascript" src="../../scripts/team.js"></script>
 
 </head>
@@ -26,6 +22,13 @@ session_start();
 <body>
 	<?php
 	session_start();
+	if (isset($_SESSION['nav']) && isset($_SESSION['font']) && isset($_SESSION['fontsize']) && isset($_SESSION['bg'])) {
+		$nav = $_SESSION['nav'];
+		$font = $_SESSION['font'];
+		$fontsize = $_SESSION['fontsize'];
+		$background = $_SESSION['bg'];
+		$all = true;
+	}
 	?>
 	<header role="banner" class="header">
 		<div class="container">
@@ -82,46 +85,50 @@ session_start();
 		</div>
 
 		<div id="option">
-			<div id="font">
-				<p>Navigation</p>
-				<input type="radio" name="nav" value="top" checked="checked" /> Top
-				<input type="radio" name="nav" value="left" /> Left
-				<input type="radio" name="nav" value="right" /> Right
-				<p>Font</p>
-				<select id="fontselect" name="selectFontFamily" onchange="fontupdate('fontstyle')">
-					<option style="font-family:Serif" value="serif"> Serif </option>
-					<option style="font-family:Tahoma" value="Tahoma"> Tahoma </option>
-					<option style="font-family:Arial" value="Arial"> Arial </option>
-					<option style="font-family:Monospace" value="Monospace">Monospace</option>
-					<option style="font-family:Roboto" value="Roboto">Roboto</option>
-					<option style="font-family:Times New Roman" value="Times New Roman">Times New Roman</option>
-					<option style="font-family:Garamond" value="Garamond">Garamond</option>
-					<option style="font-family:Comic Sans MS" value="Comic Sans MS">Comic Sans MS</option>
-					<option style="font-family:Courier" value="Courier">Courier</option>
-					<option style="font-family:Impact" value="Impact">Impact</option>
-				</select>
-				<p>Font Size</p>
-				<select id="fontsizeSlect" name="selectfontsize" onchange="fontupdate('sizeTC')">
-					<option style="font-size: 15px">Small</option>
-					<option style="font-size: 20px" selected>Normal</option>
-					<option style="font-size: 25px">Medium</option>
-					<option style="font-size: 30px">Large</option>
-					<option style="font-size: 35px">Huge</option>
-				</select>
-			</div>
-			<div id="background">
-				<p>Background</p>
-				<select id="backselect" name="selectBackground" onchange="backupdate();">
-					<option value="1"> Theme1 </option>
-					<option value="2"> Theme2</option>
-					<option value="3"> Theme3 </option>
-					<option value="4"> Theme4 </option>
-					<option value="5"> Theme5 </option>
-				</select>
-			</div>
+			<form action="../../../savemenu.php" method="POST">
+				<div id="font">
+					<p>Navigation</p>
+					<input type="radio" name="nav" value="top" checked="checked" /> Top
+					<input type="radio" name="nav" value="left" /> Left
+					<input type="radio" name="nav" value="right" /> Right
+					<p>Font</p>
+					<select id="fontselect" name="selectFontFamily" onchange="fontupdate('fontstyle')">
+						<option style="font-family:Serif" value="serif"> Serif </option>
+						<option style="font-family:Tahoma" value="Tahoma"> Tahoma </option>
+						<option style="font-family:Arial" value="Arial"> Arial </option>
+						<option style="font-family:Monospace" value="Monospace">Monospace</option>
+						<option style="font-family:Roboto" value="Roboto">Roboto</option>
+						<option style="font-family:Times New Roman" value="Times New Roman">Times New Roman</option>
+						<option style="font-family:Garamond" value="Garamond">Garamond</option>
+						<option style="font-family:Comic Sans MS" value="Comic Sans MS">Comic Sans MS</option>
+						<option style="font-family:Courier" value="Courier">Courier</option>
+						<option style="font-family:Impact" value="Impact">Impact</option>
+					</select>
+					<p>Font Size</p>
+					<select id="fontsizeSlect" name="selectfontsize" onchange="fontupdate('sizeTC')">
+						<option style="font-size: 15px">Small</option>
+						<option style="font-size: 20px" selected>Normal</option>
+						<option style="font-size: 25px">Medium</option>
+						<option style="font-size: 30px">Large</option>
+						<option style="font-size: 35px">Huge</option>
+					</select>
+				</div>
+				<div id="background">
+					<p>Background</p>
+					<select id="backselect" name="selectBackground" onchange="backupdate();">
+						<option value="1"> Theme1 </option>
+						<option value="2"> Theme2</option>
+						<option value="3"> Theme3 </option>
+						<option value="4"> Theme4 </option>
+						<option value="5"> Theme5 </option>
+					</select>
+				</div>
+				<input id="submit" type="submit" value="save" onclick="savemenu();">
+	    </form>
 		</div>
 	</div>
 
+	<?php if ($all == true) {echo "<script> changeForm('$nav','$font','$fontsize','$background'); </script>"; } ?>
 	<main role="main">
 		<div id="sideNav">
 			<div class="nav-list-left">
@@ -133,12 +140,12 @@ session_start();
 				<a id="sideContact" href="../../../contact/index.html"> <img src="../../../common/images/phone-24px.svg" alt="contact"> </a>
 			</div>
 			<div class="nav-list-right">
-				<a href="../notice/index.html" >NOTICE</a>
-				<a href="../members/index.html" >MEMBERS</a>
-				<a href="../research/index.html" >RESEARCH</a>
-				<a href="../publications/index.html" >PUBLICATIONS</a>
-				<a href="../courses/index.html" class="selected" >COURSES</a>
-				<a href="../gallery/index.html" >GALLERY</a>
+				<a href="../../../notice/index.html" >NOTICE</a>
+				<a href="../../../members/index.html" >MEMBERS</a>
+				<a href="../../../research/index.html" >RESEARCH</a>
+				<a href="../../../publications/index.html" >PUBLICATIONS</a>
+				<a href="../../../courses/index.html" class="selected" >COURSES</a>
+				<a href="../../../gallery/index.html" >GALLERY</a>
 			</div>
 		</div>
 
@@ -163,7 +170,7 @@ session_start();
 						<?php
 
 						try {
-							$db = new PDO("mysql:dbname=team; host=54.180.112.225; port=3306", "root", "11111111");
+							$db = new PDO("mysql:dbname=team; host=13.124.181.241; port=3306", "root", "11111111");
 							$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 							$db->query("set session character_set_connection=utf8;");
 							$db->query("set session character_set_results=utf8;");
@@ -197,7 +204,7 @@ session_start();
 											<input type="text" name="exname" value="<?=$teamname?>" style="display:none;">
 											<div class="mteamname"><span>팀명: </span><input type="text" name="teamname" value="<?=$teamname?>"></div>
 											<div class="git"><span>Github: </span><input type="text" name="github" value="<?=$team['github']?>"></div>
-											<div class="center"><input type="submit" value="수정하기"></div>
+											<div class="right"><input id = "editButton" type="submit" value="수정하기"></div>
 										</form>
 										<ul>
 											<?php
@@ -211,7 +218,9 @@ session_start();
 											}
 											?>
 										</ul>
-										<a href="php/out.php"> <button class="secession">탈퇴</button> </a>
+										<div class="center">
+											<a href="php/out.php"> <button class="secession">탈퇴</button> </a>
+										</div>
 										<?php
 									}
 								}
